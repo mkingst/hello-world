@@ -1,6 +1,7 @@
 stages:
  - build
-
+variables:
+  GIT_SSL_NO_VERIFY: "1"
 maven-build:
   stage: build
   script: "mvn package -B"
