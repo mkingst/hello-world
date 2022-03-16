@@ -10,7 +10,6 @@ maven-build:
   artifacts:
     paths:
       - webapp/target/*.war
-
 deploy:     
   stage: deploy
   before_script:
