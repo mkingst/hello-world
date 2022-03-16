@@ -1,0 +1,10 @@
+stages:
+ - build
+
+maven-build:
+  stage: build
+  script: "mvn package -B"
+  artifacts:
+    path:
+      - target/*.war
+     
