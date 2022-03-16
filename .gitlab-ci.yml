@@ -1,15 +1,17 @@
 stages:
  - build
+ - deploy 
 variables:
   GIT_SSL_NO_VERIFY: "1"
+
 maven-build:
   stage: build
   script: "mvn package -B"
   artifacts:
     paths:
       - webapp/target/*.war
-     
-Deploy: 
+
+deploy:     
   stage: deploy
   before_script:
   - 'command -v ssh-agent >/dev/null || ( apk add --update openssh )' 
@@ -20,4 +22,4 @@ Deploy:
   - ssh-keyscan $EC2_IPADDRESS >> ~/.ssh/known_hosts
   - chmod 644 ~/.ssh/known_hosts
   script:
-    - scp -o StrictHostKeyChecking=no /home/gitlab-runner/builds/kB-j1czT/0/mkingst/hello-world/webapp/target/webapp.war
+    - scp -o StrictHostKeyChecking=no /home/gitlab-runner/builds/kB-j1czT/0/mkingst/hello-world/webapp/target/webapp.war admin@172.31.6.122:/opt/tomcat8/webapps
