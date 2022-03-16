@@ -5,6 +5,6 @@ maven-build:
   stage: build
   script: "mvn package -B"
   artifacts:
-    path:
+    paths:
       - target/*.war
      
